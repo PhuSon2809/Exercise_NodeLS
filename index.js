@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const nationRouter = require("./routes/nationRouter");
 
 const hostname = "localhost";
 const port = 5000;
@@ -20,6 +21,8 @@ app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
 
 app.use(bodyParser.json());
+
+app.use("/nations", nationRouter);
 
 app.all("/nations", (req, res, next) => {
   res.statusCode = 200;
